@@ -18,7 +18,9 @@ import User from "./User";
 const Employees = memo(() => {
   /////////////////////////////////////// VARIABLES ////////////////////////////////////////
   const dispatch = useDispatch();
-  const { employees, allEmployees, isFetching, error } = useSelector((state) => state.user);
+  const { employees, allEmployees, isFetching, error } = useSelector(
+    (state) => state.user
+  );
   const columns = [
     {
       field: "uid",
@@ -48,9 +50,7 @@ const Employees = memo(() => {
       headerClassName: "super-app-theme--header",
       width: 200,
       renderCell: (params) => (
-        <div className="font-primary capitalize">
-          {params.row.username}
-        </div>
+        <div className="font-primary capitalize">{params.row.username}</div>
       ),
     },
 
@@ -60,7 +60,9 @@ const Employees = memo(() => {
       headerClassName: "super-app-theme--header",
       width: 200,
       renderCell: (params) => (
-        <div className="text-[#20aee3] font-primary font-light">{params.row.email}</div>
+        <div className="text-[#20aee3] font-primary font-light">
+          {params.row.email}
+        </div>
       ),
     },
     {
@@ -68,7 +70,9 @@ const Employees = memo(() => {
       headerName: "Phone",
       headerClassName: "super-app-theme--header",
       width: 200,
-      renderCell: (params) => <div className="font-primary">{params.row.phone}</div>,
+      renderCell: (params) => (
+        <div className="font-primary">{params.row.phone}</div>
+      ),
     },
     {
       field: "action",
@@ -132,8 +136,16 @@ const Employees = memo(() => {
 
   return (
     <div className="w-full">
-      <EditEmployee open={openEditModal} setOpen={setOpenEditModal} />
-      <DeleteEmployee open={openDeleteModal} setOpen={setOpenDeleteModal} userId={selectedUserId} />
+      <EditEmployee
+        open={openEditModal}
+        setOpen={setOpenEditModal}
+        type={"employee"}
+      />
+      <DeleteEmployee
+        open={openDeleteModal}
+        setOpen={setOpenDeleteModal}
+        userId={selectedUserId}
+      />
       <User open={openView} setOpen={setOpenViewk} />
 
       <Topbar
